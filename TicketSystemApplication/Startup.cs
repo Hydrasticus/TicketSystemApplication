@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+using TicketSystemApplication.Data;
+using TicketSystemApplication.Models;
 
 namespace TicketSystemApplication {
     public class Startup {
@@ -22,6 +25,9 @@ namespace TicketSystemApplication {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<TicketSystemApplicationContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("TicketSystemApplicationContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
