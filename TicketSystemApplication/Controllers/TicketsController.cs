@@ -35,10 +35,10 @@ namespace TicketSystemApplication.Controllers {
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicketList(string routeNo,
             string departureStopNo, string destinationStopNo) {
-            return await _context.Ticket.Where(x => (routeNo == null || x.RouteNo == routeNo) &&
-                                                    (departureStopNo == null || x.DepartureStopNo == departureStopNo) &&
-                                                    (destinationStopNo == null ||
-                                                     x.DestinationStopNo == destinationStopNo)
+            return await _context.Ticket.Where(
+                x => (routeNo == null || x.RouteNo == routeNo) &&
+                     (departureStopNo == null || x.DepartureStopNo == departureStopNo) &&
+                     (destinationStopNo == null || x.DestinationStopNo == destinationStopNo)
             ).ToListAsync();
         }
 
@@ -51,7 +51,7 @@ namespace TicketSystemApplication.Controllers {
                 return NotFound();
             }
 
-            return ticket;
+            return Ok(ticket);
         }
 
         // POST: api/Tickets
