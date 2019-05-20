@@ -32,6 +32,14 @@ namespace TicketSystemApplication.Controllers {
         }
 
         // GET: api/Tickets
+        /// <summary>
+        /// Returns an array of tickets, optionally filtered by route number 
+        /// and/or departure stop number and/or destination stop number.
+        /// </summary>
+        /// <param name="routeNo">Optional parameter.</param>
+        /// <param name="departureStopNo">Optional parameter.</param>
+        /// <param name="destinationStopNo">Optional parameter.</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicketList(string routeNo,
             string departureStopNo, string destinationStopNo) {
@@ -43,6 +51,11 @@ namespace TicketSystemApplication.Controllers {
         }
 
         // GET: api/Tickets/5
+        /// <summary>
+        /// Returns a ticket via its ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Ticket>> GetTicket(Guid id) {
             var ticket = await _context.Ticket.FindAsync(id);
@@ -55,6 +68,11 @@ namespace TicketSystemApplication.Controllers {
         }
 
         // POST: api/Tickets
+        /// <summary>
+        /// Adds a ticket to the database.
+        /// </summary>
+        /// <param name="ticket">Ticket from JSON body.</param>
+        /// <returns>Created ticket.</returns>
         [HttpPost]
         public async Task<ActionResult<Ticket>> AddTicket(Ticket ticket) {
             if (!ModelState.IsValid) {
